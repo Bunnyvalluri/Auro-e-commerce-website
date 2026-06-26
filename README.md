@@ -8,7 +8,7 @@
 
 **AuraStore** is a next-generation, high-performance e-commerce product browsing and search portal. Built with **Vite**, **Tailwind CSS v4**, and **Algolia Search**, it provides a hyper-responsive storefront interface featuring instant indexing, intelligent faceted search filters, and an elegant, modern UI.
 
-🌐 **Live Demo:** [aurostore.netlify.app](https://aurostore.netlify.app/)
+🌐 **Live Demo:** [aurastore-2026.netlify.app](https://aurastore-2026.netlify.app/)
 
 ---
 
