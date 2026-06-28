@@ -530,9 +530,26 @@ function processAndRender(searchTimeMs = 0) {
   });
 }
 
-// Fetch Search Results from Algolia
+let localProductsCache = null;
+
+async function loadLocalProducts() {
+  if (!localProductsCache) {
+    try {
+      const res = await fetch('/products.json');
+      localProductsCache = await res.json();
+      localProductsCache = localProductsCache.map(p => ({ ...p, objectID: p.id || p.objectID }));
+    } catch (e) {
+      console.error('Failed to load local products.json', e);
+      localProductsCache = [];
+    }
+  }
+  return localProductsCache;
+}
+
+// Fetch Search Results from Algolia with Local Fallback
 async function fetchResults() {
   const startTime = performance.now();
+  let hits = [];
   try {
     const { results } = await client.search({
       requests: [
@@ -543,16 +560,31 @@ async function fetchResults() {
         }
       ]
     });
-
-    const searchTimeMs = (performance.now() - startTime).toFixed(0);
-    cachedHits = results[0]?.hits || [];
-
-    updateCategoryCounts(cachedHits);
-    processAndRender(searchTimeMs);
+    hits = results[0]?.hits || [];
   } catch (error) {
-    console.error('Error fetching search results from Algolia:', error);
-    stats.innerHTML = '<span class="text-red-500 font-medium">Failed to connect to search service.</span>';
+    console.warn('Algolia network search unavailable or failed, switching to local products index:', error);
   }
+
+  // Fallback to local products.json if Algolia returns 0 hits or fails
+  if (!hits || hits.length === 0) {
+    const localProds = await loadLocalProducts();
+    if (currentQuery.trim() === '') {
+      hits = localProds;
+    } else {
+      const q = currentQuery.toLowerCase();
+      hits = localProds.filter(p => 
+        (p.name && p.name.toLowerCase().includes(q)) ||
+        (p.category && p.category.toLowerCase().includes(q)) ||
+        (p.description && p.description.toLowerCase().includes(q)) ||
+        (p.brand && p.brand.toLowerCase().includes(q))
+      );
+    }
+  }
+
+  const searchTimeMs = (performance.now() - startTime).toFixed(0);
+  cachedHits = hits;
+  updateCategoryCounts(cachedHits);
+  processAndRender(searchTimeMs);
 }
 
 // Event Listeners
@@ -746,4 +778,264 @@ updateLayoutButtons();
 updateChipUI();
 applyCategoryStyles();
 fetchResults();
+
+/* ==========================================
+   USER PROFILE MANAGEMENT & EDIT CONTROLLER
+   ========================================== */
+const STORAGE_KEY_PROFILE = 'aurastore_user_profile';
+
+const defaultProfile = {
+  firstName: 'John',
+  lastName: 'Doe',
+  email: 'john.doe@example.com',
+  title: 'Senior Developer & Shopper',
+  gradient: 'from-violet-600 to-fuchsia-500',
+  customPhoto: null
+};
+
+let userProfile = { ...defaultProfile };
+
+// Load persisted profile
+try {
+  const saved = localStorage.getItem(STORAGE_KEY_PROFILE);
+  if (saved) {
+    userProfile = { ...defaultProfile, ...JSON.parse(saved) };
+  }
+} catch (e) {
+  console.error('Failed to load user profile', e);
+}
+
+// DOM elements for profile
+const userProfileBtn = document.getElementById('userProfileBtn');
+const profileDropdown = document.getElementById('profileDropdown');
+const openProfileModalBtn = document.getElementById('openProfileModalBtn');
+const profileModal = document.getElementById('profileModal');
+const profileModalCard = document.getElementById('profileModalCard');
+const closeProfileModalBtn = document.getElementById('closeProfileModalBtn');
+const cancelProfileBtn = document.getElementById('cancelProfileBtn');
+const profileForm = document.getElementById('profileForm');
+
+// Input fields & previews
+const inputFirstName = document.getElementById('inputFirstName');
+const inputLastName = document.getElementById('inputLastName');
+const inputEmail = document.getElementById('inputEmail');
+const inputTitle = document.getElementById('inputTitle');
+const avatarFileInput = document.getElementById('avatarFileInput');
+const removePhotoBtn = document.getElementById('removePhotoBtn');
+
+// Helper to get initials
+function getInitials(first, last) {
+  const f = (first || '').trim().charAt(0).toUpperCase();
+  const l = (last || '').trim().charAt(0).toUpperCase();
+  return (f + l) || 'JD';
+}
+
+// Render profile across all components
+function renderUserProfile() {
+  const initials = getInitials(userProfile.firstName, userProfile.lastName);
+  const fullName = `${userProfile.firstName} ${userProfile.lastName}`.trim();
+
+  // Header Avatar
+  const headerAvatar = document.getElementById('headerAvatar');
+  const headerAvatarInitials = document.getElementById('headerAvatarInitials');
+  const headerAvatarImg = document.getElementById('headerAvatarImg');
+
+  // Dropdown Avatar
+  const dropdownAvatar = document.getElementById('dropdownAvatar');
+  const dropdownAvatarInitials = document.getElementById('dropdownAvatarInitials');
+  const dropdownAvatarImg = document.getElementById('dropdownAvatarImg');
+  const dropdownName = document.getElementById('dropdownName');
+  const dropdownEmail = document.getElementById('dropdownEmail');
+
+  // Preview Avatar in Modal
+  const previewAvatar = document.getElementById('previewAvatar');
+  const previewAvatarInitials = document.getElementById('previewAvatarInitials');
+  const previewAvatarImg = document.getElementById('previewAvatarImg');
+
+  [headerAvatar, dropdownAvatar, previewAvatar].forEach(el => {
+    if (!el) return;
+    // reset gradient classes
+    el.className = el.className.replace(/bg-gradient-to-[^\s]+/g, '').replace(/from-[^\s]+/g, '').replace(/to-[^\s]+/g, '');
+    if (!userProfile.customPhoto) {
+      el.classList.add('bg-gradient-to-tr', ...userProfile.gradient.split(' '));
+    } else {
+      el.classList.add('bg-zinc-800');
+    }
+  });
+
+  if (userProfile.customPhoto) {
+    [headerAvatarInitials, dropdownAvatarInitials, previewAvatarInitials].forEach(el => el && el.classList.add('hidden'));
+    [headerAvatarImg, dropdownAvatarImg, previewAvatarImg].forEach(el => {
+      if (el) {
+        el.src = userProfile.customPhoto;
+        el.classList.remove('hidden');
+      }
+    });
+    if (removePhotoBtn) removePhotoBtn.classList.remove('hidden');
+  } else {
+    [headerAvatarInitials, dropdownAvatarInitials, previewAvatarInitials].forEach(el => {
+      if (el) {
+        el.textContent = initials;
+        el.classList.remove('hidden');
+      }
+    });
+    [headerAvatarImg, dropdownAvatarImg, previewAvatarImg].forEach(el => el && el.classList.add('hidden'));
+    if (removePhotoBtn) removePhotoBtn.classList.add('hidden');
+  }
+
+  if (dropdownName) dropdownName.textContent = fullName || 'User';
+  if (dropdownEmail) dropdownEmail.textContent = userProfile.email || 'user@example.com';
+}
+
+// Toggle Dropdown
+if (userProfileBtn && profileDropdown) {
+  userProfileBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isHidden = profileDropdown.classList.contains('hidden');
+    if (isHidden) {
+      profileDropdown.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        profileDropdown.classList.remove('opacity-0', 'scale-95');
+      });
+    } else {
+      closeProfileDropdown();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (profileDropdown && !profileDropdown.contains(e.target) && userProfileBtn && !userProfileBtn.contains(e.target)) {
+      closeProfileDropdown();
+    }
+  });
+}
+
+function closeProfileDropdown() {
+  if (!profileDropdown) return;
+  profileDropdown.classList.add('opacity-0', 'scale-95');
+  setTimeout(() => {
+    profileDropdown.classList.add('hidden');
+  }, 200);
+}
+
+// Open / Close Modal
+function openProfileModal() {
+  closeProfileDropdown();
+  if (!profileModal) return;
+  
+  // Populate form fields with current profile
+  if (inputFirstName) inputFirstName.value = userProfile.firstName;
+  if (inputLastName) inputLastName.value = userProfile.lastName;
+  if (inputEmail) inputEmail.value = userProfile.email;
+  if (inputTitle) inputTitle.value = userProfile.title;
+
+  // Update theme picker active state
+  const themeBtns = document.querySelectorAll('#gradientThemePicker .theme-btn');
+  themeBtns.forEach(btn => {
+    if (btn.getAttribute('data-gradient') === userProfile.gradient) {
+      btn.classList.add('ring-2', 'ring-offset-2', 'active');
+    } else {
+      btn.classList.remove('ring-2', 'ring-offset-2', 'active');
+    }
+  });
+
+  renderUserProfile();
+
+  profileModal.classList.remove('hidden');
+  requestAnimationFrame(() => {
+    profileModal.classList.remove('opacity-0');
+    profileModalCard.classList.remove('scale-95');
+  });
+}
+
+function closeProfileModal() {
+  if (!profileModal) return;
+  profileModal.classList.add('opacity-0');
+  profileModalCard.classList.add('scale-95');
+  setTimeout(() => {
+    profileModal.classList.add('hidden');
+  }, 300);
+}
+
+if (openProfileModalBtn) openProfileModalBtn.addEventListener('click', openProfileModal);
+if (closeProfileModalBtn) closeProfileModalBtn.addEventListener('click', closeProfileModal);
+if (cancelProfileBtn) cancelProfileBtn.addEventListener('click', closeProfileModal);
+
+if (profileModal) {
+  profileModal.addEventListener('click', (e) => {
+    if (e.target === profileModal) closeProfileModal();
+  });
+}
+
+// Real-time initials update on input
+[inputFirstName, inputLastName].forEach(input => {
+  if (!input) return;
+  input.addEventListener('input', () => {
+    const fn = inputFirstName ? inputFirstName.value : '';
+    const ln = inputLastName ? inputLastName.value : '';
+    const previewInitials = document.getElementById('previewAvatarInitials');
+    if (previewInitials && !userProfile.customPhoto) {
+      previewInitials.textContent = getInitials(fn, ln);
+    }
+  });
+});
+
+// Gradient Theme Picker
+const themeBtns = document.querySelectorAll('#gradientThemePicker .theme-btn');
+themeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    themeBtns.forEach(b => b.classList.remove('ring-2', 'ring-offset-2', 'active'));
+    btn.classList.add('ring-2', 'ring-offset-2', 'active');
+    userProfile.gradient = btn.getAttribute('data-gradient');
+    userProfile.customPhoto = null; // reset custom photo when picking theme
+    renderUserProfile();
+  });
+});
+
+// Photo Upload Handler
+if (avatarFileInput) {
+  avatarFileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        userProfile.customPhoto = event.target.result;
+        renderUserProfile();
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+}
+
+if (removePhotoBtn) {
+  removePhotoBtn.addEventListener('click', () => {
+    userProfile.customPhoto = null;
+    if (avatarFileInput) avatarFileInput.value = '';
+    renderUserProfile();
+  });
+}
+
+// Form Submit Handler
+if (profileForm) {
+  profileForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (inputFirstName) userProfile.firstName = inputFirstName.value.trim();
+    if (inputLastName) userProfile.lastName = inputLastName.value.trim();
+    if (inputEmail) userProfile.email = inputEmail.value.trim();
+    if (inputTitle) userProfile.title = inputTitle.value.trim();
+
+    try {
+      localStorage.setItem(STORAGE_KEY_PROFILE, JSON.stringify(userProfile));
+    } catch (err) {
+      console.error('Failed to save profile', err);
+    }
+
+    renderUserProfile();
+    closeProfileModal();
+    showToast('Profile updated successfully! ✨');
+  });
+}
+
+// Initialize profile on startup
+renderUserProfile();
+
 
