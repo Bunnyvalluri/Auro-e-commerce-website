@@ -10,69 +10,69 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-slate-50 text-slate-800 antialiased min-h-screen font-sans">
+  <body class="bg-zinc-50 text-zinc-900 antialiased min-h-screen font-sans">
     <div id="app" class="flex flex-col h-screen overflow-hidden">
       <!-- Premium Sticky Header -->
-      <header class="sticky top-0 z-50 flex flex-col md:flex-row md:items-center justify-between px-4 md:px-6 py-3.5 md:h-[76px] bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-3xs">
+      <header class="sticky top-0 z-50 flex flex-col md:flex-row md:items-center justify-between px-4 md:px-6 py-3.5 md:h-[76px] bg-white/80 backdrop-blur-xl border-b border-zinc-200/60 shadow-xs">
         <div class="flex items-center justify-between w-full md:w-auto">
           <!-- Hamburger Button for Mobile Menu -->
-          <button id="mobileMenuBtn" aria-label="Open filter sidebar" class="md:hidden p-2 -ml-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer">
+          <button id="mobileMenuBtn" aria-label="Open filter sidebar" class="md:hidden p-2 -ml-2 rounded-xl text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 active:scale-95 transition-all cursor-pointer">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
             </svg>
           </button>
           
-          <div class="flex items-center gap-2.5 font-bold text-xl text-slate-900 tracking-tight cursor-pointer select-none" id="logoBtn">
-            <div class="w-8.5 h-8.5 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-extrabold shadow-md shadow-indigo-200">A</div>
-            <span>Aura<span class="text-indigo-600 font-extrabold">Store</span></span>
+          <div class="flex items-center gap-2.5 font-bold text-xl text-zinc-900 tracking-tight cursor-pointer select-none" id="logoBtn">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-violet-600 to-fuchsia-500 flex items-center justify-center text-white font-extrabold shadow-md shadow-violet-200/50">A</div>
+            <span>Aura<span class="bg-gradient-to-r from-violet-600 to-fuchsia-500 bg-clip-text text-transparent font-extrabold">Store</span></span>
           </div>
           
           <!-- Mobile Cart Display -->
           <div class="md:hidden flex items-center gap-2">
-            <div class="relative flex items-center justify-center p-2.5 rounded-xl border border-slate-200 bg-white active:scale-95 transition-all shadow-3xs cursor-pointer cart-trigger-btn">
-              <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <div class="relative flex items-center justify-center p-2.5 rounded-xl border border-zinc-200 bg-white active:scale-95 transition-all shadow-3xs cursor-pointer cart-trigger-btn">
+              <svg class="w-5 h-5 text-zinc-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"></path>
               </svg>
-              <span class="absolute -top-1.5 -right-1.5 flex items-center justify-center w-4.5 h-4.5 text-[9px] font-bold text-white bg-indigo-600 rounded-full shadow-sm scale-0 transition-transform duration-300 cart-count-badge">0</span>
+              <span class="absolute -top-1.5 -right-1.5 flex items-center justify-center w-4.5 h-4.5 text-[9px] font-bold text-white bg-gradient-to-r from-violet-600 to-fuchsia-500 rounded-full shadow-sm scale-0 transition-transform duration-300 cart-count-badge">0</span>
             </div>
           </div>
         </div>
 
         <!-- Centered Search Bar -->
         <div class="w-full md:flex-1 md:max-w-xl lg:max-w-2xl md:mx-6 mt-3.5 md:mt-0 relative">
-          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-zinc-400">
             <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.3-4.3"></path>
             </svg>
           </div>
-          <input type="text" id="searchBox" placeholder="Search for products, brands, categories..." autocomplete="off" class="w-full pl-11 pr-11 py-2.5 bg-slate-50 border border-slate-200 rounded-xl placeholder-slate-400 text-slate-700 text-xs md:text-sm focus:outline-none focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100/50 shadow-3xs focus:shadow-xs transition-all duration-200" />
-          <button id="clearSearch" aria-label="Clear search" class="absolute right-11 top-1/2 -translate-y-1/2 hidden items-center justify-center p-1.5 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-all cursor-pointer">
+          <input type="text" id="searchBox" placeholder="Search for products, brands, categories..." autocomplete="off" class="w-full pl-11 pr-11 py-2.5 bg-zinc-100/70 border border-transparent rounded-xl placeholder-zinc-400 text-zinc-800 text-xs md:text-sm focus:outline-none focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-100/50 shadow-3xs focus:shadow-xs transition-all duration-300" />
+          <button id="clearSearch" aria-label="Clear search" class="absolute right-11 top-1/2 -translate-y-1/2 hidden items-center justify-center p-1.5 rounded-full text-zinc-400 hover:text-zinc-600 hover:bg-zinc-100 transition-all cursor-pointer">
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 6 6 18M6 6l12 12"></path>
             </svg>
           </button>
-          <div class="absolute right-4.5 top-1/2 -translate-y-1/2 text-[9px] px-1.5 py-0.5 bg-slate-200/80 border border-slate-300 text-slate-500 rounded font-bold select-none pointer-events-none shadow-3xs hidden md:block">/</div>
+          <div class="absolute right-4.5 top-1/2 -translate-y-1/2 text-[9px] px-1.5 py-0.5 bg-zinc-200/80 border border-zinc-300/50 text-zinc-500 rounded font-bold select-none pointer-events-none shadow-3xs hidden md:block">/</div>
         </div>
 
         <!-- Desktop Navigation Actions -->
         <div class="hidden md:flex items-center gap-5">
-          <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-indigo-600 cursor-pointer transition-colors px-1 py-2">
+          <div class="flex items-center gap-1.5 text-xs font-semibold text-zinc-500 hover:text-violet-600 cursor-pointer transition-colors px-1 py-2">
             <span>Deals</span>
           </div>
-          <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-indigo-600 cursor-pointer transition-colors px-1 py-2">
+          <div class="flex items-center gap-1.5 text-xs font-semibold text-zinc-500 hover:text-violet-600 cursor-pointer transition-colors px-1 py-2">
             <span>Customer Care</span>
           </div>
           
-          <div id="cartBtn" class="relative flex items-center justify-center p-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 transition-all cursor-pointer group shadow-3xs active:scale-95 cart-trigger-btn">
-            <svg class="w-5 h-5 text-slate-600 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <div id="cartBtn" class="relative flex items-center justify-center p-2.5 rounded-xl border border-zinc-200 bg-white hover:bg-zinc-50 hover:border-zinc-350 transition-all cursor-pointer group shadow-3xs active:scale-95 cart-trigger-btn">
+            <svg class="w-5 h-5 text-zinc-600 group-hover:text-violet-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"></path>
             </svg>
-            <span id="cartBadge" class="absolute -top-1.5 -right-1.5 flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-indigo-600 rounded-full shadow-sm scale-0 transition-transform duration-300 cart-count-badge">0</span>
+            <span id="cartBadge" class="absolute -top-1.5 -right-1.5 flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-gradient-to-r from-violet-600 to-fuchsia-500 rounded-full shadow-sm scale-0 transition-transform duration-300 cart-count-badge">0</span>
           </div>
           
-          <div class="flex items-center gap-2 pl-3 border-l border-slate-200">
-            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-xs font-bold shadow-sm select-none">JD</div>
+          <div class="flex items-center gap-2 pl-3 border-l border-zinc-200">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-violet-600 to-fuchsia-500 text-white flex items-center justify-center text-xs font-bold shadow-sm select-none">JD</div>
           </div>
         </div>
       </header>
@@ -81,15 +81,15 @@
       <div class="flex flex-col md:flex-row flex-1 overflow-hidden relative">
         
         <!-- Mobile Drawer Backdrop Overlay -->
-        <div id="mobileDrawerBackdrop" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-300 opacity-0 pointer-events-none md:hidden"></div>
+        <div id="mobileDrawerBackdrop" class="fixed inset-0 z-40 bg-zinc-950/60 backdrop-blur-xs transition-opacity duration-300 opacity-0 pointer-events-none md:hidden"></div>
 
         <!-- Sticky Sidebar / Mobile Left Drawer -->
-        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-76 bg-white p-5 flex flex-col gap-5 border-r border-slate-200/80 shadow-xl md:shadow-none transform -translate-x-full transition-transform duration-300 ease-out md:static md:translate-x-0 md:flex md:h-[calc(100vh-76px)] md:w-76 md:z-auto md:p-6 overflow-y-auto sidebar-scroll shrink-0 select-none">
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-76 bg-white p-5 flex flex-col gap-5 border-r border-zinc-200/60 shadow-xl md:shadow-none transform -translate-x-full transition-transform duration-300 ease-out md:static md:translate-x-0 md:flex md:h-[calc(100vh-76px)] md:w-76 md:z-auto md:p-6 overflow-y-auto sidebar-scroll shrink-0 select-none">
           
           <!-- Mobile Close Button Header -->
-          <div class="flex items-center justify-between md:hidden border-b border-slate-100 pb-3">
-            <span class="font-bold text-slate-800 text-sm">Filters & Categories</span>
-            <button id="closeMobileMenuBtn" aria-label="Close sidebar" class="p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-all cursor-pointer">
+          <div class="flex items-center justify-between md:hidden border-b border-zinc-100 pb-3">
+            <span class="font-bold text-zinc-800 text-sm">Filters & Categories</span>
+            <button id="closeMobileMenuBtn" aria-label="Close sidebar" class="p-2 rounded-xl text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 transition-all cursor-pointer">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
               </svg>
@@ -98,127 +98,127 @@
 
           <div class="flex flex-col gap-4">
             <!-- All Categories Trigger Button -->
-            <button class="group flex items-center justify-between w-full px-4 py-2.5 text-left rounded-xl text-xs font-bold tracking-wide uppercase transition-all duration-200 bg-indigo-600 text-white shadow-sm shadow-indigo-100 active-category cursor-pointer" data-category="all">
+            <button class="group flex items-center justify-between w-full px-4 py-2.5 text-left rounded-xl text-xs font-bold tracking-wide uppercase transition-all duration-200 bg-gradient-to-r from-violet-600 to-fuchsia-500 text-white shadow-sm shadow-violet-250/20 active-category cursor-pointer" data-category="all">
               <span>🛍️ All Departments</span>
               <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-white/20 text-white font-extrabold" id="count-all">235</span>
             </button>
 
             <!-- Department Group 1: Fashion -->
-            <div class="border-b border-slate-100 pb-4 mt-1">
-              <h4 class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2 px-3">👗 Fashion & Apparel</h4>
+            <div class="border-b border-zinc-100 pb-4 mt-1">
+              <h4 class="text-[10px] font-extrabold uppercase tracking-widest text-rose-600/90 mb-2 px-3">👗 Fashion & Apparel</h4>
               <div class="flex flex-col gap-0.5">
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Women's Fashion">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-rose-50 text-zinc-600 hover:text-rose-650 cursor-pointer" data-category="Women's Fashion">
                   <span>Women's Fashion</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Womens-Fashion">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-rose-100 group-hover:text-rose-600" id="count-Womens-Fashion">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Men's Fashion">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-rose-50 text-zinc-600 hover:text-rose-650 cursor-pointer" data-category="Men's Fashion">
                   <span>Men's Fashion</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Mens-Fashion">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-rose-100 group-hover:text-rose-600" id="count-Mens-Fashion">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Kids' Fashion">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-rose-50 text-zinc-600 hover:text-rose-650 cursor-pointer" data-category="Kids' Fashion">
                   <span>Kids' Fashion</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Kids-Fashion">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-rose-100 group-hover:text-rose-600" id="count-Kids-Fashion">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Apparel & Hoodies">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-rose-50 text-zinc-600 hover:text-rose-650 cursor-pointer" data-category="Apparel & Hoodies">
                   <span>Apparel & Hoodies</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Apparel-Hoodies">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-rose-100 group-hover:text-rose-600" id="count-Apparel-Hoodies">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Shoes & Footwear">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-rose-50 text-zinc-600 hover:text-rose-650 cursor-pointer" data-category="Shoes & Footwear">
                   <span>Shoes & Footwear</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Shoes-Footwear">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-rose-100 group-hover:text-rose-600" id="count-Shoes-Footwear">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Clothing Accessories">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-rose-50 text-zinc-600 hover:text-rose-650 cursor-pointer" data-category="Clothing Accessories">
                   <span>Clothing Accessories</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Clothing-Accessories">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-rose-100 group-hover:text-rose-600" id="count-Clothing-Accessories">10</span>
                 </button>
               </div>
             </div>
 
             <!-- Department Group 2: Tech & Gadgets -->
-            <div class="border-b border-slate-100 pb-4">
-              <h4 class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2 px-3">⚡ Tech & Gadgets</h4>
+            <div class="border-b border-zinc-100 pb-4">
+              <h4 class="text-[10px] font-extrabold uppercase tracking-widest text-blue-600/90 mb-2 px-3">⚡ Tech & Gadgets</h4>
               <div class="flex flex-col gap-0.5">
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Mobiles & Phones">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-blue-50 text-zinc-600 hover:text-blue-655 cursor-pointer" data-category="Mobiles & Phones">
                   <span>Mobiles & Phones</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Mobiles-Phones">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-blue-100 group-hover:text-blue-600" id="count-Mobiles-Phones">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Laptops & Notebooks">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-blue-50 text-zinc-600 hover:text-blue-655 cursor-pointer" data-category="Laptops & Notebooks">
                   <span>Laptops & Notebooks</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Laptops-Notebooks">15</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-blue-100 group-hover:text-blue-600" id="count-Laptops-Notebooks">15</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Cameras & Optics">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-blue-50 text-zinc-600 hover:text-blue-655 cursor-pointer" data-category="Cameras & Optics">
                   <span>Cameras & Optics</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Cameras-Optics">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-blue-100 group-hover:text-blue-600" id="count-Cameras-Optics">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Computer Accessories">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-blue-50 text-zinc-600 hover:text-blue-655 cursor-pointer" data-category="Computer Accessories">
                   <span>Computer Access.</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Computer-Accessories">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-blue-100 group-hover:text-blue-600" id="count-Computer-Accessories">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Electronics & Audio">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-blue-50 text-zinc-600 hover:text-blue-655 cursor-pointer" data-category="Electronics & Audio">
                   <span>Electronics & Audio</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Electronics-Audio">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-blue-100 group-hover:text-blue-600" id="count-Electronics-Audio">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Watches & Horology">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-blue-50 text-zinc-600 hover:text-blue-655 cursor-pointer" data-category="Watches & Horology">
                   <span>Watches & Horology</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Watches-Horology">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-blue-100 group-hover:text-blue-600" id="count-Watches-Horology">10</span>
                 </button>
               </div>
             </div>
 
             <!-- Department Group 3: Fresh & Healthy -->
-            <div class="border-b border-slate-100 pb-4">
-              <h4 class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2 px-3">🍏 Fresh & Healthy</h4>
+            <div class="border-b border-zinc-100 pb-4">
+              <h4 class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-600/90 mb-2 px-3">🍏 Fresh & Healthy</h4>
               <div class="flex flex-col gap-0.5">
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Amazon Fresh">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-emerald-50 text-zinc-600 hover:text-emerald-650 cursor-pointer" data-category="Amazon Fresh">
                   <span>Amazon Fresh</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Amazon-Fresh">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-emerald-100 group-hover:text-emerald-600" id="count-Amazon-Fresh">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Health & Household">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-emerald-50 text-zinc-600 hover:text-emerald-650 cursor-pointer" data-category="Health & Household">
                   <span>Health & Household</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Health-Household">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-emerald-100 group-hover:text-emerald-600" id="count-Health-Household">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Personal Safety">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-emerald-50 text-zinc-600 hover:text-emerald-650 cursor-pointer" data-category="Personal Safety">
                   <span>Personal Safety</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Personal-Safety">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-emerald-100 group-hover:text-emerald-600" id="count-Personal-Safety">10</span>
                 </button>
               </div>
             </div>
 
             <!-- Department Group 4: Home & Lifestyle -->
             <div class="pb-2">
-              <h4 class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2 px-3">🪴 Home & Lifestyle</h4>
+              <h4 class="text-[10px] font-extrabold uppercase tracking-widest text-amber-605/90 mb-2 px-3">🪴 Home & Lifestyle</h4>
               <div class="flex flex-col gap-0.5">
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Home & Kitchen">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-amber-50 text-zinc-600 hover:text-amber-650 cursor-pointer" data-category="Home & Kitchen">
                   <span>Home & Kitchen</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Home-Kitchen">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-amber-100 group-hover:text-amber-600" id="count-Home-Kitchen">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Pet Supplies">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-amber-50 text-zinc-600 hover:text-amber-655 cursor-pointer" data-category="Pet Supplies">
                   <span>Pet Supplies</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Pet-Supplies">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-amber-100 group-hover:text-amber-600" id="count-Pet-Supplies">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Sports & Fitness">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-amber-50 text-zinc-600 hover:text-amber-655 cursor-pointer" data-category="Sports & Fitness">
                   <span>Sports & Fitness</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Sports-Fitness">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-amber-100 group-hover:text-amber-600" id="count-Sports-Fitness">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Baby & Toddler">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-amber-50 text-zinc-600 hover:text-amber-655 cursor-pointer" data-category="Baby & Toddler">
                   <span>Baby & Toddler</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Baby-Toddler">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-amber-100 group-hover:text-amber-600" id="count-Baby-Toddler">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Bags & Luggage">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-amber-50 text-zinc-600 hover:text-amber-655 cursor-pointer" data-category="Bags & Luggage">
                   <span>Bags & Luggage</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Bags-Luggage">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-amber-100 group-hover:text-amber-600" id="count-Bags-Luggage">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Beauty & Skincare">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-amber-50 text-zinc-600 hover:text-amber-655 cursor-pointer" data-category="Beauty & Skincare">
                   <span>Beauty & Skincare</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Beauty-Skincare">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-amber-100 group-hover:text-amber-600" id="count-Beauty-Skincare">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Car & Motorbike">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-amber-50 text-zinc-600 hover:text-amber-655 cursor-pointer" data-category="Car & Motorbike">
                   <span>Car & Motorbike</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Car-Motorbike">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-500 font-bold group-hover:bg-amber-100 group-hover:text-amber-600" id="count-Car-Motorbike">10</span>
                 </button>
-                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 cursor-pointer" data-category="Books & Literature">
+                <button class="filter-btn group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-amber-50 text-zinc-600 hover:text-amber-655 cursor-pointer" data-category="Books & Literature">
                   <span>Books & Literature</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200" id="count-Books-Literature">10</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-550 font-bold group-hover:bg-amber-100 group-hover:text-amber-600" id="count-Books-Literature">10</span>
                 </button>
               </div>
             </div>
@@ -226,37 +226,37 @@
         </aside>
 
         <!-- Main Results Grid Window -->
-        <main class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col gap-5 overflow-y-auto bg-slate-50/50">
+        <main class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col gap-6 overflow-y-auto bg-zinc-50/50">
           
           <!-- Top Filter & Metadata Bar -->
-          <div class="flex flex-col gap-3.5 bg-white border border-slate-200/70 p-4.5 rounded-2xl shadow-3xs">
+          <div class="flex flex-col gap-3.5 bg-white border border-zinc-200/50 p-4.5 rounded-2xl shadow-xs">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
               
               <!-- Breadcrumbs & Stats -->
               <div class="flex flex-col gap-0.5">
-                <div class="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider select-none">
+                <div class="flex items-center gap-1.5 text-[10px] font-bold text-zinc-400 uppercase tracking-widest select-none">
                   <span>AuraStore</span>
                   <span class="text-[8px] font-normal">/</span>
-                  <span id="breadcrumbCategory" class="text-indigo-600">All Products</span>
+                  <span id="breadcrumbCategory" class="text-violet-600">All Products</span>
                 </div>
-                <div id="stats" class="text-xs text-slate-500 font-medium">Loading results...</div>
+                <div id="stats" class="text-xs text-zinc-500 font-medium">Loading results...</div>
               </div>
 
               <!-- Right Actions: Layout Toggle & Sort -->
               <div class="flex items-center gap-3.5 self-end sm:self-auto shrink-0">
                 <!-- Grid Column Toggles -->
-                <div class="flex items-center bg-slate-50 border border-slate-200 rounded-xl p-1 shadow-3xs select-none">
-                  <button id="viewGrid3" title="3 Columns View" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-white active:scale-95 transition-all cursor-pointer">
+                <div class="flex items-center bg-zinc-100/80 border border-zinc-200/50 rounded-xl p-1 shadow-3xs select-none">
+                  <button id="viewGrid3" title="3 Columns View" class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 hover:bg-white active:scale-95 transition-all cursor-pointer">
                     <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"></path>
                     </svg>
                   </button>
-                  <button id="viewGrid4" title="4 Columns View" class="p-1.5 rounded-lg bg-white text-indigo-600 shadow-3xs active:scale-95 transition-all cursor-pointer">
+                  <button id="viewGrid4" title="4 Columns View" class="p-1.5 rounded-lg bg-white text-violet-600 shadow-3xs active:scale-95 transition-all cursor-pointer border border-zinc-200/20">
                     <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h3v3h-3v-3ZM3.75 10.5h3v3h-3v-3ZM3.75 15.75h3v3h-3v-3ZM9 5.25h3v3H9v-3ZM9 10.5h3v3H9v-3ZM9 15.75h3v3H9v-3ZM14.25 5.25h3v3h-3v-3ZM14.25 10.5h3v3h-3v-3ZM14.25 15.75h3v3h-3v-3ZM19.5 5.25h3v3h-3v-3ZM19.5 10.5h3v3h-3v-3ZM19.5 15.75h3v3h-3v-3Z"></path>
                     </svg>
                   </button>
-                  <button id="viewList" title="List View" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-white active:scale-95 transition-all cursor-pointer">
+                  <button id="viewList" title="List View" class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 hover:bg-white active:scale-95 transition-all cursor-pointer">
                     <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm0 5.25h.007v.008H3.75V12Zm0 5.25h.007v.008H3.75v-.008Z"></path>
                     </svg>
@@ -264,7 +264,7 @@
                 </div>
 
                 <!-- Sort Dropdown -->
-                <select id="sortBy" aria-label="Sort products" class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 text-xs font-semibold focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all cursor-pointer">
+                <select id="sortBy" aria-label="Sort products" class="px-3.5 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-zinc-750 text-xs font-semibold focus:outline-none focus:border-violet-500 focus:ring-4 focus:ring-violet-100/50 transition-all cursor-pointer shadow-3xs">
                   <option value="featured">Featured (Default)</option>
                   <option value="price-asc">Price: Low to High</option>
                   <option value="price-desc">Price: High to Low</option>
@@ -274,18 +274,18 @@
             </div>
 
             <!-- Quick Filter Chips -->
-            <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 pt-3 select-none">
-              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-1">Quick Filters:</span>
-              <button id="chipInStock" class="px-3 py-1.5 border border-slate-200 rounded-xl text-slate-600 hover:border-slate-300 hover:bg-slate-50 text-xs font-medium transition-all cursor-pointer bg-slate-50 select-none">
+            <div class="flex flex-wrap items-center gap-2 border-t border-zinc-100 pt-3 select-none">
+              <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mr-1">Quick Filters:</span>
+              <button id="chipInStock" class="px-3.5 py-1.5 border border-zinc-200 rounded-xl text-zinc-600 hover:border-zinc-300 hover:bg-zinc-100/40 text-xs font-medium transition-all cursor-pointer bg-white shadow-3xs select-none">
                 In Stock Only
               </button>
-              <button id="chipHighlyRated" class="px-3 py-1.5 border border-slate-200 rounded-xl text-slate-600 hover:border-slate-300 hover:bg-slate-50 text-xs font-medium transition-all cursor-pointer bg-slate-50 select-none">
+              <button id="chipHighlyRated" class="px-3.5 py-1.5 border border-zinc-200 rounded-xl text-zinc-600 hover:border-zinc-300 hover:bg-zinc-100/40 text-xs font-medium transition-all cursor-pointer bg-white shadow-3xs select-none">
                 Highly Rated (★ 4.5+)
               </button>
-              <button id="chipUnder100" class="px-3 py-1.5 border border-slate-200 rounded-xl text-slate-600 hover:border-slate-300 hover:bg-slate-50 text-xs font-medium transition-all cursor-pointer bg-slate-50 select-none">
+              <button id="chipUnder100" class="px-3.5 py-1.5 border border-zinc-200 rounded-xl text-zinc-600 hover:border-zinc-300 hover:bg-zinc-100/40 text-xs font-medium transition-all cursor-pointer bg-white shadow-3xs select-none">
                 Under $100
               </button>
-              <button id="chipClearAll" class="px-3 py-1.5 border border-dashed border-rose-200 rounded-xl text-rose-600 hover:bg-rose-50 text-xs font-semibold transition-all cursor-pointer bg-white hidden select-none">
+              <button id="chipClearAll" class="px-3.5 py-1.5 border border-dashed border-rose-200 rounded-xl text-rose-600 hover:bg-rose-50/70 hover:border-rose-300 text-xs font-semibold transition-all cursor-pointer bg-white hidden select-none">
                 Clear Filters
               </button>
             </div>
@@ -297,24 +297,24 @@
           </div>
 
           <!-- Empty Search State -->
-          <div id="emptyState" class="hidden flex-col items-center justify-center text-center py-16 px-6 bg-white border border-dashed border-slate-200 rounded-2xl gap-4 shadow-3xs max-w-md mx-auto w-full mt-4">
-            <div class="w-12 h-12 bg-slate-50 text-slate-400 flex items-center justify-center rounded-2xl border border-slate-100">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <div id="emptyState" class="hidden flex-col items-center justify-center text-center py-16 px-6 bg-white border border-dashed border-zinc-200 rounded-2xl gap-5 shadow-xs max-w-md mx-auto w-full mt-4">
+            <div class="w-14 h-14 bg-zinc-50 text-zinc-400 flex items-center justify-center rounded-2xl border border-zinc-100 shadow-3xs">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                 <circle cx="11" cy="11" r="8"></circle>
                 <path d="m21 21-4.3-4.3"></path>
               </svg>
             </div>
-            <h3 class="text-sm font-semibold text-slate-800">No products found</h3>
-            <p class="text-xs text-slate-400 max-w-xs leading-relaxed">We couldn't find anything matching your search filters. Try a different keyword or reset filters.</p>
-            <button id="resetSearchBtn" class="px-4.5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-xs hover:shadow-sm transition-all cursor-pointer">Reset Search & Filters</button>
+            <h3 class="text-sm font-bold text-zinc-800">No products found</h3>
+            <p class="text-xs text-zinc-550 max-w-xs leading-relaxed">We couldn't find anything matching your search filters. Try a different keyword or reset filters.</p>
+            <button id="resetSearchBtn" class="px-5 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-500 hover:from-violet-750 hover:to-fuchsia-600 text-white rounded-xl text-xs font-semibold shadow-md shadow-violet-200/50 hover:shadow-lg hover:shadow-violet-200/70 transition-all cursor-pointer animate-pulse">Reset Search & Filters</button>
           </div>
 
           <!-- Premium Copyright Footer -->
-          <footer class="mt-auto pt-6 pb-2 border-t border-slate-200/65 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-400 select-none">
+          <footer class="mt-auto pt-6 pb-2 border-t border-zinc-200/65 flex flex-col sm:flex-row items-center justify-between gap-3 text-zinc-400 select-none">
             <span class="text-[11px] font-medium">&copy; 2026 AuraStore. All rights reserved.</span>
             <span class="text-[11px] font-medium font-sans">
               Designed & Developed by 
-              <a href="https://valluri-rahul-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 font-bold hover:underline transition-all">VALLURI RAHUL</a>
+              <a href="https://valluri-rahul-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-violet-600 hover:text-fuchsia-600 font-bold hover:underline transition-all">VALLURI RAHUL</a>
             </span>
           </footer>
         </main>

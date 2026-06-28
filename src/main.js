@@ -32,6 +32,236 @@ const categoryButtons = document.querySelectorAll('.filter-btn, [data-category="
 const resetSearchBtn = document.getElementById('resetSearchBtn');
 const breadcrumbCategory = document.getElementById('breadcrumbCategory');
 
+const CATEGORY_THEMES = {
+  "all": {
+    hoverBg: "hover:bg-zinc-100/60",
+    hoverText: "hover:text-zinc-900",
+    activeClass: "bg-gradient-to-r from-violet-600 to-fuchsia-500 text-white shadow-sm shadow-violet-250/20",
+    badgeInactive: "bg-zinc-100 text-zinc-500",
+    badgeActive: "bg-white/20 text-white font-extrabold",
+    textColor: "text-violet-600"
+  },
+  // Fashion (Rose)
+  "Women's Fashion": {
+    hoverBg: "hover:bg-rose-50",
+    hoverText: "hover:text-rose-650",
+    activeClass: "bg-rose-50 border border-rose-100/70 text-rose-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-rose-100 group-hover:text-rose-600",
+    badgeActive: "bg-rose-600 text-white font-semibold",
+    textColor: "text-rose-600"
+  },
+  "Men's Fashion": {
+    hoverBg: "hover:bg-rose-50",
+    hoverText: "hover:text-rose-650",
+    activeClass: "bg-rose-50 border border-rose-100/70 text-rose-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-rose-100 group-hover:text-rose-600",
+    badgeActive: "bg-rose-600 text-white font-semibold",
+    textColor: "text-rose-600"
+  },
+  "Kids' Fashion": {
+    hoverBg: "hover:bg-rose-50",
+    hoverText: "hover:text-rose-650",
+    activeClass: "bg-rose-50 border border-rose-100/70 text-rose-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-rose-100 group-hover:text-rose-600",
+    badgeActive: "bg-rose-600 text-white font-semibold",
+    textColor: "text-rose-600"
+  },
+  "Apparel & Hoodies": {
+    hoverBg: "hover:bg-rose-50",
+    hoverText: "hover:text-rose-650",
+    activeClass: "bg-rose-50 border border-rose-100/70 text-rose-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-rose-100 group-hover:text-rose-600",
+    badgeActive: "bg-rose-600 text-white font-semibold",
+    textColor: "text-rose-600"
+  },
+  "Shoes & Footwear": {
+    hoverBg: "hover:bg-rose-50",
+    hoverText: "hover:text-rose-650",
+    activeClass: "bg-rose-50 border border-rose-100/70 text-rose-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-rose-100 group-hover:text-rose-600",
+    badgeActive: "bg-rose-600 text-white font-semibold",
+    textColor: "text-rose-600"
+  },
+  "Clothing Accessories": {
+    hoverBg: "hover:bg-rose-50",
+    hoverText: "hover:text-rose-650",
+    activeClass: "bg-rose-50 border border-rose-100/70 text-rose-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-rose-100 group-hover:text-rose-600",
+    badgeActive: "bg-rose-600 text-white font-semibold",
+    textColor: "text-rose-600"
+  },
+  // Tech (Blue)
+  "Mobiles & Phones": {
+    hoverBg: "hover:bg-blue-50",
+    hoverText: "hover:text-blue-655",
+    activeClass: "bg-blue-50 border border-blue-100 text-blue-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-blue-100 group-hover:text-blue-600",
+    badgeActive: "bg-blue-600 text-white font-semibold",
+    textColor: "text-blue-600"
+  },
+  "Laptops & Notebooks": {
+    hoverBg: "hover:bg-blue-50",
+    hoverText: "hover:text-blue-655",
+    activeClass: "bg-blue-50 border border-blue-100 text-blue-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-blue-100 group-hover:text-blue-600",
+    badgeActive: "bg-blue-600 text-white font-semibold",
+    textColor: "text-blue-600"
+  },
+  "Cameras & Optics": {
+    hoverBg: "hover:bg-blue-50",
+    hoverText: "hover:text-blue-655",
+    activeClass: "bg-blue-50 border border-blue-100 text-blue-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-blue-100 group-hover:text-blue-600",
+    badgeActive: "bg-blue-600 text-white font-semibold",
+    textColor: "text-blue-600"
+  },
+  "Computer Accessories": {
+    hoverBg: "hover:bg-blue-50",
+    hoverText: "hover:text-blue-655",
+    activeClass: "bg-blue-50 border border-blue-100 text-blue-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-blue-100 group-hover:text-blue-600",
+    badgeActive: "bg-blue-600 text-white font-semibold",
+    textColor: "text-blue-600"
+  },
+  "Electronics & Audio": {
+    hoverBg: "hover:bg-blue-50",
+    hoverText: "hover:text-blue-655",
+    activeClass: "bg-blue-50 border border-blue-100 text-blue-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-blue-100 group-hover:text-blue-600",
+    badgeActive: "bg-blue-600 text-white font-semibold",
+    textColor: "text-blue-600"
+  },
+  "Watches & Horology": {
+    hoverBg: "hover:bg-blue-50",
+    hoverText: "hover:text-blue-655",
+    activeClass: "bg-blue-50 border border-blue-100 text-blue-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-blue-100 group-hover:text-blue-600",
+    badgeActive: "bg-blue-600 text-white font-semibold",
+    textColor: "text-blue-600"
+  },
+  // Fresh & Healthy (Emerald)
+  "Amazon Fresh": {
+    hoverBg: "hover:bg-emerald-50",
+    hoverText: "hover:text-emerald-650",
+    activeClass: "bg-emerald-50 border border-emerald-100 text-emerald-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-emerald-100 group-hover:text-emerald-600",
+    badgeActive: "bg-emerald-600 text-white font-semibold",
+    textColor: "text-emerald-600"
+  },
+  "Health & Household": {
+    hoverBg: "hover:bg-emerald-50",
+    hoverText: "hover:text-emerald-650",
+    activeClass: "bg-emerald-50 border border-emerald-100 text-emerald-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-emerald-100 group-hover:text-emerald-600",
+    badgeActive: "bg-emerald-600 text-white font-semibold",
+    textColor: "text-emerald-600"
+  },
+  "Personal Safety": {
+    hoverBg: "hover:bg-emerald-50",
+    hoverText: "hover:text-emerald-650",
+    activeClass: "bg-emerald-50 border border-emerald-100 text-emerald-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-emerald-100 group-hover:text-emerald-600",
+    badgeActive: "bg-emerald-600 text-white font-semibold",
+    textColor: "text-emerald-600"
+  },
+  // Home & Lifestyle (Amber)
+  "Home & Kitchen": {
+    hoverBg: "hover:bg-amber-50",
+    hoverText: "hover:text-amber-650",
+    activeClass: "bg-amber-50 border border-amber-100 text-amber-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-amber-100 group-hover:text-amber-600",
+    badgeActive: "bg-amber-600 text-white font-semibold",
+    textColor: "text-amber-600"
+  },
+  "Pet Supplies": {
+    hoverBg: "hover:bg-amber-50",
+    hoverText: "hover:text-amber-655",
+    activeClass: "bg-amber-50 border border-amber-100 text-amber-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-amber-100 group-hover:text-amber-600",
+    badgeActive: "bg-amber-600 text-white font-semibold",
+    textColor: "text-amber-600"
+  },
+  "Sports & Fitness": {
+    hoverBg: "hover:bg-amber-50",
+    hoverText: "hover:text-amber-655",
+    activeClass: "bg-amber-50 border border-amber-100 text-amber-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-amber-100 group-hover:text-amber-600",
+    badgeActive: "bg-amber-600 text-white font-semibold",
+    textColor: "text-amber-600"
+  },
+  "Baby & Toddler": {
+    hoverBg: "hover:bg-amber-50",
+    hoverText: "hover:text-amber-655",
+    activeClass: "bg-amber-50 border border-amber-100 text-amber-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-amber-100 group-hover:text-amber-600",
+    badgeActive: "bg-amber-600 text-white font-semibold",
+    textColor: "text-amber-600"
+  },
+  "Bags & Luggage": {
+    hoverBg: "hover:bg-amber-50",
+    hoverText: "hover:text-amber-655",
+    activeClass: "bg-amber-50 border border-amber-100 text-amber-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-amber-100 group-hover:text-amber-600",
+    badgeActive: "bg-amber-600 text-white font-semibold",
+    textColor: "text-amber-600"
+  },
+  "Beauty & Skincare": {
+    hoverBg: "hover:bg-amber-50",
+    hoverText: "hover:text-amber-655",
+    activeClass: "bg-amber-50 border border-amber-100 text-amber-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-amber-100 group-hover:text-amber-600",
+    badgeActive: "bg-amber-600 text-white font-semibold",
+    textColor: "text-amber-600"
+  },
+  "Car & Motorbike": {
+    hoverBg: "hover:bg-amber-50",
+    hoverText: "hover:text-amber-655",
+    activeClass: "bg-amber-50 border border-amber-100 text-amber-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-amber-100 group-hover:text-amber-600",
+    badgeActive: "bg-amber-600 text-white font-semibold",
+    textColor: "text-amber-600"
+  },
+  "Books & Literature": {
+    hoverBg: "hover:bg-amber-50",
+    hoverText: "hover:text-amber-655",
+    activeClass: "bg-amber-50 border border-amber-100 text-amber-700",
+    badgeInactive: "bg-zinc-100 text-zinc-500 group-hover:bg-amber-100 group-hover:text-amber-600",
+    badgeActive: "bg-amber-600 text-white font-semibold",
+    textColor: "text-amber-600"
+  }
+};
+
+function applyCategoryStyles() {
+  categoryButtons.forEach(btn => {
+    const cat = btn.dataset.category;
+    const theme = CATEGORY_THEMES[cat];
+    if (!theme) return;
+    const isAll = cat === 'all';
+    const badge = btn.querySelector('span:last-child');
+    
+    if (cat === activeCategory) {
+      if (isAll) {
+        btn.className = `group flex items-center justify-between w-full px-4 py-3 text-left rounded-xl text-xs font-semibold tracking-wide uppercase transition-all duration-200 ${theme.activeClass} active-category cursor-pointer`;
+      } else {
+        btn.className = `group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-semibold transition-all duration-200 ${theme.activeClass} active-category cursor-pointer`;
+      }
+      if (badge) badge.className = `text-[10px] px-2 py-0.5 rounded-full ${theme.badgeActive}`;
+    } else {
+      if (isAll) {
+        btn.className = `group flex items-center justify-between w-full px-4 py-3 text-left rounded-xl text-xs font-semibold tracking-wide uppercase transition-all duration-200 ${theme.hoverBg} text-zinc-600 ${theme.hoverText} cursor-pointer`;
+      } else {
+        btn.className = `group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 ${theme.hoverBg} text-zinc-600 ${theme.hoverText} cursor-pointer`;
+      }
+      if (badge) badge.className = `text-[10px] px-2 py-0.5 rounded-full ${theme.badgeInactive}`;
+    }
+  });
+
+  if (breadcrumbCategory) {
+    const activeTheme = CATEGORY_THEMES[activeCategory] || CATEGORY_THEMES["all"];
+    breadcrumbCategory.className = activeTheme.textColor;
+  }
+}
+
 // Layout Controls
 const viewGrid3 = document.getElementById('viewGrid3');
 const viewGrid4 = document.getElementById('viewGrid4');
@@ -55,14 +285,14 @@ function showToast(message) {
   if (!container) return;
 
   const toast = document.createElement('div');
-  toast.className = 'pointer-events-auto flex items-center gap-3 px-4.5 py-3.5 bg-slate-900/95 backdrop-blur-md text-white rounded-xl shadow-lg border border-slate-800 text-xs font-medium min-w-[280px] max-w-sm animate-toast-in';
+  toast.className = 'pointer-events-auto flex items-center gap-3.5 px-5 py-4 bg-zinc-900/95 backdrop-blur-md text-white rounded-2xl shadow-xl border border-zinc-800 text-xs font-semibold min-w-[300px] max-w-sm animate-toast-in';
   toast.innerHTML = `
-    <div class="w-5 h-5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center rounded-lg shrink-0">
+    <div class="w-5.5 h-5.5 bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 flex items-center justify-center rounded-xl shrink-0">
       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
       </svg>
     </div>
-    <span class="flex-1 leading-relaxed">${message}</span>
+    <span class="flex-1 leading-relaxed text-zinc-105">${message}</span>
   `;
   container.appendChild(toast);
 
@@ -72,7 +302,7 @@ function showToast(message) {
     toast.addEventListener('animationend', () => {
       toast.remove();
     });
-  }, 2500);
+  }, 2800);
 }
 
 // Shopping Cart actions
@@ -204,38 +434,38 @@ function processAndRender(searchTimeMs = 0) {
 
     if (activeLayout === 'list') {
       return `
-        <div class="group flex flex-col sm:flex-row bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-2xs hover:shadow-md hover:border-indigo-100 transition-all duration-300 p-4 gap-5">
-          <div class="relative w-full sm:w-48 h-48 sm:h-auto shrink-0 bg-slate-50 overflow-hidden border border-slate-100 rounded-xl">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="${item.image}" alt="${item.name}" loading="lazy" />
-            <span class="absolute top-2 left-2 bg-white/95 backdrop-blur-md border border-white/20 text-[9px] font-extrabold tracking-wider uppercase text-slate-800 px-2 py-0.5 rounded shadow-2xs select-none">${item.category}</span>
+        <div class="group flex flex-col sm:flex-row bg-white border border-zinc-200/60 rounded-3xl overflow-hidden shadow-2xs hover:shadow-lg hover:border-violet-200 transition-all duration-300 p-5 gap-6">
+          <div class="relative w-full sm:w-48 h-48 sm:h-auto shrink-0 bg-zinc-50 overflow-hidden border border-zinc-100 rounded-2xl">
+            <img class="img-zoom-hover w-full h-full object-cover" src="${item.image}" alt="${item.name}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop';" />
+            <span class="absolute top-3 left-3 bg-white/80 backdrop-blur-md border border-white/40 text-[9px] font-bold tracking-widest uppercase text-zinc-800 px-2.5 py-1 rounded-xl shadow-2xs select-none">${item.category}</span>
           </div>
           <div class="flex-1 flex flex-col justify-between py-1">
             <div class="flex flex-col gap-1">
               <div class="flex justify-between items-center gap-2 select-none">
-                <span class="text-[10px] font-bold tracking-wider uppercase text-slate-400">${brand}${subcategory ? ` • <span class="text-indigo-600 font-semibold">${subcategory}</span>` : ''}</span>
-                <span class="flex items-center gap-0.5 text-xs font-semibold text-slate-700 bg-slate-50 px-2 py-0.5 rounded-lg border border-slate-100">
+                <span class="text-[9px] font-bold tracking-widest uppercase text-zinc-400">${brand}${subcategory ? ` • <span class="text-violet-650 font-bold">${subcategory}</span>` : ''}</span>
+                <span class="flex items-center gap-1 text-xs font-bold text-zinc-700 bg-zinc-50 px-2.5 py-1 rounded-xl border border-zinc-100">
                   <span class="text-amber-500">★</span> ${rating}
                 </span>
               </div>
-              <h4 class="font-bold text-slate-800 text-sm md:text-base leading-snug group-hover:text-indigo-600 transition-colors duration-200 mt-1">${name}</h4>
-              <p class="text-xs text-slate-500 leading-relaxed mt-1.5">${description}</p>
+              <h4 class="font-bold text-zinc-800 text-base md:text-lg leading-snug group-hover:text-violet-600 transition-colors duration-200 mt-1">${name}</h4>
+              <p class="text-xs text-zinc-500 leading-relaxed mt-2">${description}</p>
             </div>
             
             <div class="flex items-center gap-3.5 mt-4 select-none">
-              <span class="text-[10px] ${stock < 15 ? 'text-rose-500 font-semibold bg-rose-50 border border-rose-100' : 'text-slate-500 bg-slate-50 border border-slate-100'} px-2.5 py-1 rounded-lg">${stock} in stock</span>
-              ${stock < 15 ? `<span class="text-[10px] text-rose-500 font-bold animate-pulse">Low Stock Warning</span>` : ''}
+              <span class="text-[10px] ${stock < 15 ? 'text-rose-600 font-bold bg-rose-50 border border-rose-100' : 'text-zinc-500 bg-zinc-50 border border-zinc-150/80'} px-3 py-1 rounded-xl">${stock} in stock</span>
+              ${stock < 15 ? `<span class="text-[10px] text-rose-600 font-extrabold animate-pulse">Low Stock Warning</span>` : ''}
             </div>
           </div>
           
-          <div class="w-full sm:w-44 border-t sm:border-t-0 sm:border-l border-slate-100 pt-4 sm:pt-0 sm:pl-5 flex sm:flex-col justify-between sm:justify-center items-center sm:items-stretch gap-4 shrink-0">
+          <div class="w-full sm:w-44 border-t sm:border-t-0 sm:border-l border-zinc-150/80 pt-4 sm:pt-0 sm:pl-5 flex sm:flex-col justify-between sm:justify-center items-center sm:items-stretch gap-4 shrink-0">
             <div class="flex flex-col sm:gap-0.5">
               <div class="flex items-baseline gap-1.5">
-                <span class="text-xl font-bold text-slate-900 leading-none">$${price}</span>
-                <span class="text-[9px] text-indigo-600 font-bold bg-indigo-50 px-1.5 py-0.5 rounded">-${discount}%</span>
+                <span class="text-2xl font-extrabold text-zinc-900 leading-none">$${price}</span>
+                <span class="text-[9px] text-violet-650 font-bold bg-violet-50 px-2 py-0.5 rounded-lg">-${discount}%</span>
               </div>
-              <span class="text-xs text-slate-400 line-through mt-0.5">$${originalPrice}</span>
+              <span class="text-xs text-zinc-400 line-through mt-1">$${originalPrice}</span>
             </div>
-            <button class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-3xs hover:shadow-md transition-all buy-btn cursor-pointer flex items-center justify-center gap-2" data-id="${item.objectID}">
+            <button class="px-5 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-500 hover:from-violet-700 hover:to-fuchsia-600 text-white rounded-2xl text-xs font-bold shadow-md shadow-violet-200/30 hover:shadow-lg transition-all buy-btn cursor-pointer flex items-center justify-center gap-2" data-id="${item.objectID}">
               <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"></path>
               </svg>
@@ -247,37 +477,37 @@ function processAndRender(searchTimeMs = 0) {
     }
 
     return `
-      <div class="group flex flex-col bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-2xs hover:shadow-xl hover:border-indigo-150/70 hover:-translate-y-1 transition-all duration-300">
-        <div class="relative aspect-square bg-slate-50 overflow-hidden border-b border-slate-100 flex items-center justify-center">
-          <img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="${item.image}" alt="${item.name}" loading="lazy" />
-          <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-md border border-white/20 text-[9px] font-extrabold tracking-wider uppercase text-slate-800 px-2.5 py-0.5 rounded shadow-2xs select-none">${item.category}</span>
-          ${stock < 15 ? `<span class="absolute top-3 right-3 bg-rose-500 text-white text-[9px] font-extrabold tracking-wider uppercase px-2 py-0.5 rounded shadow-2xs animate-pulse select-none">Low Stock</span>` : ''}
+      <div class="group flex flex-col bg-white border border-zinc-200/60 rounded-3xl overflow-hidden shadow-2xs hover:shadow-lg hover:shadow-violet-200/10 hover:border-violet-200/70 hover:-translate-y-1 transition-all duration-300 relative">
+        <div class="relative aspect-square bg-zinc-50 overflow-hidden border-b border-zinc-100 flex items-center justify-center">
+          <img class="img-zoom-hover absolute inset-0 w-full h-full object-cover" src="${item.image}" alt="${item.name}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop';" />
+          <span class="absolute top-3 left-3 bg-white/80 backdrop-blur-md border border-white/40 text-[9px] font-bold tracking-widest uppercase text-zinc-800 px-2.5 py-1 rounded-xl shadow-2xs select-none">${item.category}</span>
+          ${stock < 15 ? `<span class="absolute top-3 right-3 bg-rose-600 text-white text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-xl shadow-2xs animate-pulse select-none">Low Stock</span>` : ''}
         </div>
-        <div class="p-5 flex flex-col gap-2 flex-1">
+        <div class="p-5 flex flex-col gap-2.5 flex-1">
           <div class="flex justify-between items-center gap-2 select-none">
-            <span class="text-[9px] font-extrabold tracking-wider uppercase text-slate-400 leading-none">${brand}${subcategory ? ` • <span class="text-indigo-600 font-bold">${subcategory}</span>` : ''}</span>
-            <span class="flex items-center gap-0.5 text-xs font-bold text-slate-700 bg-slate-50 px-2 py-0.5 border border-slate-100 rounded-lg">
+            <span class="text-[9px] font-bold tracking-widest uppercase text-zinc-400 leading-none">${brand}${subcategory ? ` • <span class="text-violet-650 font-bold">${subcategory}</span>` : ''}</span>
+            <span class="flex items-center gap-1 text-xs font-bold text-zinc-705 bg-zinc-50 px-2.5 py-1 border border-zinc-100 rounded-xl">
                <span class="text-amber-500">★</span> ${rating}
             </span>
           </div>
           
-          <h4 class="font-bold text-slate-800 leading-snug group-hover:text-indigo-600 transition-colors duration-200 line-clamp-2 text-sm md:text-[15px] h-10 mt-1" title="${item.name}">${name}</h4>
+          <h4 class="font-bold text-zinc-800 leading-snug group-hover:text-violet-655 transition-colors duration-200 line-clamp-2 text-[15px] h-10 mt-1" title="${item.name}">${name}</h4>
           
-          <p class="text-xs text-slate-400 leading-relaxed line-clamp-2">${description}</p>
+          <p class="text-xs text-zinc-500 leading-relaxed line-clamp-2">${description}</p>
           
           <div class="flex items-center gap-2.5 mt-1 select-none">
-            <span class="text-[10px] ${stock < 15 ? 'text-rose-500 font-semibold bg-rose-50 border border-rose-100' : 'text-slate-400 bg-slate-50 border border-slate-100'} px-2 py-0.5 rounded-md">${stock} in stock</span>
+            <span class="text-[10px] ${stock < 15 ? 'text-rose-600 font-bold bg-rose-50 border border-rose-100' : 'text-zinc-405 bg-zinc-50 border border-zinc-150/80'} px-2.5 py-1 rounded-xl">${stock} in stock</span>
           </div>
         </div>
         <div class="px-5 pb-5 pt-0 flex justify-between items-center mt-auto">
           <div class="flex flex-col">
             <div class="flex items-baseline gap-1">
-              <span class="text-base md:text-lg font-extrabold text-slate-900 leading-none">$${price}</span>
-              <span class="text-[9px] text-indigo-600 font-bold bg-indigo-50 px-1 rounded">-${discount}%</span>
+              <span class="text-lg font-extrabold text-zinc-900 leading-none">$${price}</span>
+              <span class="text-[9px] text-violet-600 font-bold bg-violet-50 px-1.5 py-0.5 rounded-lg">-${discount}%</span>
             </div>
-            <span class="text-[10px] text-slate-400 line-through mt-0.5">$${originalPrice}</span>
+            <span class="text-[10px] text-zinc-450 line-through mt-1">$${originalPrice}</span>
           </div>
-          <button class="px-3.5 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white rounded-xl text-xs font-bold shadow-3xs hover:shadow-md hover:shadow-indigo-100 transition-all buy-btn cursor-pointer flex items-center gap-1.5" data-id="${item.objectID}">
+          <button class="px-4 py-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-500 hover:from-violet-750 hover:to-fuchsia-600 active:scale-95 text-white rounded-2xl text-xs font-bold shadow-md shadow-violet-200/30 hover:shadow-lg transition-all buy-btn cursor-pointer flex items-center gap-1.5" data-id="${item.objectID}">
             <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"></path>
             </svg>
@@ -349,34 +579,12 @@ clearSearch.addEventListener('click', () => {
 
 categoryButtons.forEach(btn => {
   btn.addEventListener('click', () => {
-    categoryButtons.forEach(b => {
-      const isAll = b.dataset.category === 'all';
-      if (isAll) {
-        b.className = 'group flex items-center justify-between w-full px-4 py-3 text-left rounded-xl text-xs font-semibold tracking-wide uppercase transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800';
-        const badge = b.querySelector('span:last-child');
-        if (badge) badge.className = 'text-[10px] px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-500 font-bold group-hover:bg-slate-200';
-      } else {
-        b.className = 'group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800';
-        const badge = b.querySelector('span:last-child');
-        if (badge) badge.className = 'text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-semibold group-hover:bg-slate-200';
-      }
-    });
-
-    const isTargetAll = btn.dataset.category === 'all';
-    if (isTargetAll) {
-      btn.className = 'group flex items-center justify-between w-full px-4 py-3 text-left rounded-xl text-xs font-semibold tracking-wide uppercase transition-all duration-200 bg-indigo-50/85 border border-indigo-100/60 text-indigo-600 active-category';
-      const activeBadge = btn.querySelector('span:last-child');
-      if (activeBadge) activeBadge.className = 'text-[10px] px-2.5 py-0.5 rounded-full bg-indigo-600 text-white font-bold';
-    } else {
-      btn.className = 'group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 bg-indigo-50/85 border border-indigo-100/60 text-indigo-600 active-category';
-      const activeBadge = btn.querySelector('span:last-child');
-      if (activeBadge) activeBadge.className = 'text-[10px] px-2 py-0.5 rounded-full bg-indigo-600 text-white font-semibold';
-    }
-
     activeCategory = btn.dataset.category;
     if (breadcrumbCategory) {
       breadcrumbCategory.textContent = activeCategory === 'all' ? 'All Products' : activeCategory;
     }
+    
+    applyCategoryStyles();
     
     // Auto-close mobile drawer after category select
     closeMobileMenu();
@@ -394,15 +602,15 @@ function updateLayoutButtons() {
   if (!viewGrid3 || !viewGrid4 || !viewList) return;
   // Reset all
   [viewGrid3, viewGrid4, viewList].forEach(btn => {
-    btn.className = "p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 active:scale-95 transition-all cursor-pointer";
+    btn.className = "p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 hover:bg-zinc-200/50 active:scale-95 transition-all cursor-pointer";
   });
   // Highlight active
   if (activeLayout === 'grid-3') {
-    viewGrid3.className = "p-1.5 rounded-lg bg-white text-indigo-600 shadow-3xs active:scale-95 transition-all cursor-pointer border border-slate-100";
+    viewGrid3.className = "p-1.5 rounded-lg bg-white text-violet-605 shadow-2xs active:scale-95 transition-all cursor-pointer border border-zinc-200/40";
   } else if (activeLayout === 'grid-4') {
-    viewGrid4.className = "p-1.5 rounded-lg bg-white text-indigo-600 shadow-3xs active:scale-95 transition-all cursor-pointer border border-slate-100";
+    viewGrid4.className = "p-1.5 rounded-lg bg-white text-violet-605 shadow-2xs active:scale-95 transition-all cursor-pointer border border-zinc-200/40";
   } else if (activeLayout === 'list') {
-    viewList.className = "p-1.5 rounded-lg bg-white text-indigo-600 shadow-3xs active:scale-95 transition-all cursor-pointer border border-slate-100";
+    viewList.className = "p-1.5 rounded-lg bg-white text-violet-605 shadow-2xs active:scale-95 transition-all cursor-pointer border border-zinc-200/40";
   }
 }
 
@@ -434,9 +642,9 @@ function updateChipUI() {
   
   function setChipState(el, active) {
     if (active) {
-      el.className = "px-3 py-1.5 border border-indigo-200 rounded-xl text-indigo-600 bg-indigo-50 font-bold text-xs transition-all cursor-pointer select-none shadow-3xs";
+      el.className = "px-3.5 py-1.5 border border-violet-200 rounded-xl text-violet-655 bg-violet-50 font-bold text-xs transition-all cursor-pointer select-none shadow-sm";
     } else {
-      el.className = "px-3 py-1.5 border border-slate-200 rounded-xl text-slate-600 hover:border-slate-300 hover:bg-slate-50 text-xs font-medium transition-all cursor-pointer bg-slate-50 select-none";
+      el.className = "px-3.5 py-1.5 border border-zinc-200 rounded-xl text-zinc-650 hover:border-zinc-300 hover:bg-zinc-100/40 text-xs font-medium transition-all cursor-pointer bg-white shadow-3xs select-none";
     }
   }
   
@@ -508,18 +716,7 @@ function resetFilters() {
   activeCategory = 'all';
   if (breadcrumbCategory) breadcrumbCategory.textContent = 'All Products';
   
-  categoryButtons.forEach(btn => {
-    const isAll = btn.dataset.category === 'all';
-    if (isAll) {
-      btn.className = 'group flex items-center justify-between w-full px-4 py-3 text-left rounded-xl text-xs font-semibold tracking-wide uppercase transition-all duration-200 bg-indigo-50/85 border border-indigo-100/60 text-indigo-600 active-category';
-      const badge = btn.querySelector('span:last-child');
-      if (badge) badge.className = 'text-[10px] px-2.5 py-0.5 rounded-full bg-indigo-600 text-white font-bold';
-    } else {
-      btn.className = 'group flex items-center justify-between w-full px-3 py-2 text-left rounded-xl text-xs font-medium transition-all duration-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800';
-      const badge = btn.querySelector('span:last-child');
-      if (badge) badge.className = 'text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-semibold group-hover:bg-slate-200';
-    }
-  });
+  applyCategoryStyles();
 
   currentSort = 'featured';
   sortBy.value = 'featured';
@@ -547,5 +744,6 @@ window.addEventListener('keydown', (e) => {
 // App Startup
 updateLayoutButtons();
 updateChipUI();
+applyCategoryStyles();
 fetchResults();
 
